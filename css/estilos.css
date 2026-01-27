@@ -8,37 +8,34 @@
 
 body {
     background-color: #f5f7fa;
-    color: #333;
+    color: #0c0c0b;
     line-height: 1.6;
 }
 
 /* Header */
 header {
-    background-color: #2c3e50;
-    color: white;
+    align-items: center;
+    background-color: #e7c60b;
+    color: rgb(0, 0, 0);
     padding: 15px 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
     align-items: center;
-    justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    position: relative;
-}
-
-.logo-container img {
-    max-height: 70px;
-    width: auto;
 }
 
 .mobile-menu-toggle {
     display: none;
     font-size: 24px;
     cursor: pointer;
+    grid-column: 1;
+    justify-self: start;
 }
 
 .cart-mobile-toggle {
@@ -46,6 +43,8 @@ header {
     font-size: 24px;
     cursor: pointer;
     position: relative;
+    grid-column: 3;
+    justify-self: end;
 }
 
 .cart-mobile-toggle span {
@@ -62,6 +61,20 @@ header {
     align-items: center;
     justify-content: center;
     font-weight: bold;
+}
+
+.logo-container {
+    grid-column: 2;
+    justify-self: center;
+    text-align: center;
+    width: 100%;
+}
+
+.logo-container img {
+    max-height: 70px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Contenedor principal */
@@ -127,7 +140,7 @@ header {
 .product-image {
     width: 120px;
     height: 120px;
-    object-fit: cover;
+    object-fit: scale-down;
     border-radius: 6px;
     margin-right: 20px;
 }
@@ -596,13 +609,35 @@ footer a:hover {
 
 @media (max-width: 768px) {
     .header-container {
-        flex-direction: row;
-        text-align: center;
-        gap: 15px;
+        grid-template-columns: 35px 1fr 35px;
+        gap: 8px;
+        padding: 0 15px;
     }
     
     .mobile-menu-toggle {
         display: block;
+        font-size: 20px; /* Reducido de 24px a 20px */
+    }
+    
+    .cart-mobile-toggle {
+        display: block;
+        font-size: 20px; /* Reducido de 24px a 20px */
+    }
+    
+    .cart-mobile-toggle span {
+        width: 18px; /* Reducido de 20px a 18px */
+        height: 18px; /* Reducido de 20px a 18px */
+        font-size: 11px; /* Reducido de 12px a 11px */
+        top: -6px; /* Ajustado por el cambio de tamaño */
+        right: -6px; /* Ajustado por el cambio de tamaño */
+    }
+    
+    .logo-container img {
+        max-height: 50px; /* Reducido de 70px a 50px para móvil */
+    }
+    
+    header {
+        padding: 12px 0; /* Reducido el padding para móvil */
     }
     
     .product-card {
@@ -611,7 +646,7 @@ footer a:hover {
     
     .product-image {
         width: 100%;
-        height: 200px;
+        height: 180px; /* Reducido ligeramente */
         margin-right: 0;
         margin-bottom: 15px;
     }
@@ -646,5 +681,54 @@ footer a:hover {
     
     .right-sidebar {
         width: 100%;
+    }
+    
+    .logo-container img {
+        max-height: 45px; /* Más pequeño para móviles muy pequeños */
+    }
+    
+    .header-container {
+        grid-template-columns: 30px 1fr 30px; /* Columnas más estrechas */
+        gap: 5px;
+        padding: 0 10px;
+    }
+    
+    .mobile-menu-toggle {
+        font-size: 18px; /* Aún más pequeño para móviles pequeños */
+    }
+    
+    .cart-mobile-toggle {
+        font-size: 18px; /* Aún más pequeño para móviles pequeños */
+    }
+    
+    .cart-mobile-toggle span {
+        width: 16px; /* Más pequeño */
+        height: 16px; /* Más pequeño */
+        font-size: 10px; /* Más pequeño */
+        top: -5px;
+        right: -5px;
+    }
+    
+    .btn-send-order {
+        padding: 12px; /* Un poco más compacto */
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .header-container {
+        grid-template-columns: 28px 1fr 28px; /* Aún más compacto */
+    }
+    
+    .mobile-menu-toggle, .cart-mobile-toggle {
+        font-size: 17px; /* Mínimo tamaño legible */
+    }
+    
+    .logo-container img {
+        max-height: 40px; /* Logo muy compacto */
+    }
+    
+    header {
+        padding: 10px 0; /* Padding mínimo */
     }
 }
