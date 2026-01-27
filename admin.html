@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - MercoVentas</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img id="store-logo" src="img/logo.png" alt="Logo Ferretería">
+            </div>
+            <h1>Panel de Administración</h1>
+            <nav class="admin-nav">
+                <a href="index.html">Volver a la Tienda</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-container">
+        <div class="admin-sidebar">
+            <ul class="admin-menu">
+                <li class="active" data-section="logo-section"><i class="fas fa-image"></i> Logo de la Tienda</li>
+                <li data-section="categories-section"><i class="fas fa-tags"></i> Categorías</li>
+                <li data-section="products-section"><i class="fas fa-tools"></i> Productos</li>
+            </ul>
+        </div>
+
+        <div class="admin-content">
+            <!-- Sección Logo -->
+            <section id="logo-section" class="admin-section active">
+                <h2><i class="fas fa-image"></i> Configurar Logo</h2>
+                <div class="logo-management">
+                    <div class="current-logo">
+                        <h3>Logo Actual</h3>
+                        <img id="current-logo-preview" src="img/logo.png" alt="Logo Actual">
+                    </div>
+                    
+                    <div class="upload-logo">
+                        <h3>Subir Nuevo Logo</h3>
+                        <p>Formato recomendado: PNG o JPG. Tamaño máximo: 2MB</p>
+                        <div class="upload-area" id="logo-upload-area">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Arrastra y suelta una imagen o haz clic para seleccionar</p>
+                            <input type="file" id="logo-file-input" accept="image/*">
+                        </div>
+                        <div class="logo-preview" id="logo-preview"></div>
+                        <button id="save-logo-btn" class="btn-admin">Guardar Logo</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Categorías -->
+            <section id="categories-section" class="admin-section">
+                <h2><i class="fas fa-tags"></i> Gestión de Categorías</h2>
+                <div class="category-form">
+                    <h3>Añadir/Editar Categoría</h3>
+                    <input type="hidden" id="category-id">
+                    <div class="form-group">
+                        <label for="category-name">Nombre de la Categoría:</label>
+                        <input type="text" id="category-name" placeholder="Ej: Herramientas Manuales">
+                    </div>
+                    <div class="form-group">
+                        <label for="category-icon">Icono (Font Awesome):</label>
+                        <input type="text" id="category-icon" placeholder="Ej: fa-hammer">
+                        <small>Ver iconos disponibles en <a href="https://fontawesome.com/icons" target="_blank">Font Awesome</a></small>
+                    </div>
+                    <div class="form-buttons">
+                        <button id="save-category-btn" class="btn-admin">Guardar Categoría</button>
+                        <button id="cancel-category-btn" class="btn-admin btn-cancel">Cancelar</button>
+                    </div>
+                </div>
+                
+                <div class="categories-list">
+                    <h3>Categorías Existentes</h3>
+                    <div id="categories-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Icono</th>
+                                    <th>Productos</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="categories-table-body">
+                                <!-- Las categorías se cargarán dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Productos -->
+            <section id="products-section" class="admin-section">
+                <h2><i class="fas fa-tools"></i> Gestión de Productos</h2>
+                <div class="product-form">
+                    <h3>Añadir/Editar Producto</h3>
+                    <input type="hidden" id="product-id">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-name">Nombre del Producto:</label>
+                            <input type="text" id="product-name" placeholder="Ej: Martillo de Carpintero">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price-regular">Precio Base ($):</label>
+                            <input type="number" id="product-price-regular" min="0" step="0.01" placeholder="0.00">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-category">Categoría:</label>
+                            <select id="product-category">
+                                <!-- Las categorías se cargarán dinámicamente -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-image">Subir Imagen:</label>
+                            <input type="file" id="product-image-input" accept="image/*">
+                            <div class="image-preview" id="product-image-preview"></div>
+                            <input type="hidden" id="product-image-url">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-description">Descripción:</label>
+                        <textarea id="product-description" rows="4" placeholder="Descripción detallada del producto..."></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-price-200">Precio > $200:</label>
+                            <input type="number" id="product-price-200" min="0" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price-500">Precio > $500:</label>
+                            <input type="number" id="product-price-500" min="0" step="0.01" placeholder="0.00">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-price-1000">Precio > $1000:</label>
+                            <input type="number" id="product-price-1000" min="0" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price-3000">Precio > $3000:</label>
+                            <input type="number" id="product-price-3000" min="0" step="0.01" placeholder="0.00">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-stock">Stock Disponible:</label>
+                        <input type="number" id="product-stock" min="0" value="10">
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button id="save-product-btn" class="btn-admin">Guardar Producto</button>
+                        <button id="cancel-product-btn" class="btn-admin btn-cancel">Cancelar</button>
+                    </div>
+                </div>
+                
+                <div class="products-list-admin">
+                    <h3>Productos Existentes</h3>
+                    <div class="table-controls">
+                        <div class="search-admin">
+                            <input type="text" id="product-search-admin" placeholder="Buscar producto...">
+                        </div>
+                        <div class="filter-admin">
+                            <select id="category-filter">
+                                <option value="">Todas las categorías</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="products-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Imagen</th>
+                                    <th>Nombre</th>
+                                    <th>Categoría</th>
+                                    <th>Precio Base</th>
+                                    <th>Stock</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-table-body">
+                                <!-- Los productos se cargarán dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>Panel de Administración - MercoVentas &copy; 2026</p>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

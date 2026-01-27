@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MercoVentas</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img id="store-logo" src="img/logo.png" alt="Logo Ferretería">
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="cart-mobile-toggle">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count-mobile">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Columna izquierda: Búsqueda y categorías -->
+        <aside class="sidebar left-sidebar">
+            <div class="search-container">
+                <h3>Buscar Producto</h3>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Escribe el nombre del producto...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="search-results" class="search-results"></div>
+            </div>
+            
+            <div class="categories-container">
+                <h3>Categorías</h3>
+                <ul id="categories-list">
+                    <!-- Las categorías se cargarán dinámicamente -->
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Columna central: Productos -->
+        <section class="products-section">
+            <h2>Productos Disponibles</h2>
+            <div id="products-list" class="products-list">
+                <!-- Los productos se cargarán dinámicamente -->
+            </div>
+        </section>
+
+        <!-- Columna derecha: Carrito de compras -->
+        <aside class="sidebar right-sidebar cart-sidebar">
+            <div class="cart-header">
+                <h3><i class="fas fa-shopping-cart"></i> Carrito de Compras</h3>
+                <button class="close-cart-mobile"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="cart-items" class="cart-items">
+                <p class="empty-cart-message">El carrito está vacío</p>
+            </div>
+            
+            <div class="cart-summary">
+                <div class="summary-row">
+                    
+                </div>
+                
+                <div class="price-tiers">
+                    <p><i class="fas fa-info-circle"></i> Precios por volumen:</p>
+                    <ul>
+                        <li><span class="tier">+$200:</span> Nuevo precio</li>
+                        <li><span class="tier">+$500:</span> Con descuento</li>
+                        <li><span class="tier">+$1000:</span> Mas descuento</li>
+                        <li><span class="tier">+$3000:</span> Super descuento</li>
+                    </ul>
+                    <p class="note">* Los precios se ajustan automáticamente</p>
+                </div>
+                
+                <div class="summary-row total">
+                    <span>Total a pagar:</span>
+                    <span id="total">$0.00</span>
+                </div>
+                
+                <button id="send-order-btn" class="btn-send-order">
+                    <i class="fab fa-whatsapp"></i> Enviar Pedido
+                </button>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <p>MercoVentas &copy; 2026 - USED TIENE TODOS LOS DERECHOS</p>
+        <p><a href="admin.html">Acceso Administración</a></p>
+    </footer>
+
+    <!-- Modal para detalles del producto -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-product-details"></div>
+        </div>
+    </div>
+
+    <script src="js/tienda.js"></script>
+</body>
+</html>
