@@ -3,105 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MercoVentas</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <title>Ferretería Online - Herramientas y Materiales</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <!-- Header -->
+    <header class="header">
         <div class="header-container">
-            <div class="mobile-menu-toggle">
+            <!-- Hamburguesa para móvil -->
+            <div class="mobile-toggle" id="mobileMenuToggle">
                 <i class="fas fa-bars"></i>
             </div>
-            <div class="logo-container">
-                <img id="store-logo" src="img/logo.jpg" alt="Logo ">
+            
+            <!-- Logo -->
+            <div class="logo">
+                <img src="img/logo.png" alt="Ferretería Online" id="logo-img">
+                <h1></h1>
             </div>
             
-            <div class="cart-mobile-toggle">
+            <!-- Carrito para móvil -->
+            <div class="mobile-cart-toggle" id="mobileCartToggle">
                 <i class="fas fa-shopping-cart"></i>
-                <span id="cart-count-mobile">0</span>
+                <span class="cart-count">0</span>
             </div>
         </div>
     </header>
 
-    <main class="container">
-        <!-- Columna izquierda: Búsqueda y categorías -->
-        <aside class="sidebar left-sidebar">
+    <!-- Menú lateral móvil -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-header">
+            <h3>Menú</h3>
+            <button class="close-sidebar" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-search">
+            <input type="text" id="mobileSearch" placeholder="Buscar productos...">
+            <i class="fas fa-search"></i>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#" data-category="all">Todos los productos</a></li>
+                <li><a href="#" data-category="herramientas">Herramientas</a></li>
+                <li><a href="#" data-category="electricidad">Electricidad</a></li>
+                <li><a href="#" data-category="fontaneria">Fontanería</a></li>
+                <li><a href="#" data-category="pintura">Pintura</a></li>
+                <li><a href="#" data-category="jardin">Jardín</a></li>
+                <li><a href="#" data-category="seguridad">Seguridad</a></li>
+                <li><a href="#" data-category="materiales">Materiales de construcción</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Contenido principal -->
+    <main class="main-container">
+        <!-- Columna 1: Buscador y filtros (solo en desktop) -->
+        <aside class="sidebar" id="desktopSidebar">
             <div class="search-container">
-                <h3>Buscar Producto</h3>
-                <div class="search-box">
-                    <input type="text" id="search-input" placeholder="Escribe el nombre del producto...">
-                    <i class="fas fa-search"></i>
-                </div>
-                <div id="search-results" class="search-results"></div>
+                <input type="text" id="searchInput" placeholder="Buscar productos...">
+                <i class="fas fa-search"></i>
+                <div class="autocomplete-results" id="autocompleteResults"></div>
             </div>
             
-            <div class="categories-container">
+            <div class="filters">
                 <h3>Categorías</h3>
-                <ul id="categories-list">
-                    <!-- Las categorías se cargarán dinámicamente -->
+                <ul class="category-list">
+                    <li><a href="#" class="active" data-category="all">Todos los productos</a></li>
+                    <li><a href="#" data-category="herramientas">Herramientas</a></li>
+                    <li><a href="#" data-category="electricidad">Electricidad</a></li>
+                    <li><a href="#" data-category="fontaneria">Fontanería</a></li>
+                    <li><a href="#" data-category="pintura">Pintura</a></li>
+                    <li><a href="#" data-category="jardin">Jardín</a></li>
+                    <li><a href="#" data-category="seguridad">Seguridad</a></li>
+                    <li><a href="#" data-category="materiales">Materiales de construcción</a></li>
                 </ul>
             </div>
         </aside>
 
-        <!-- Columna central: Productos -->
+        <!-- Columna 2: Productos -->
         <section class="products-section">
-            <h2>Productos Disponibles</h2>
-            <div id="products-list" class="products-list">
-                <!-- Los productos se cargarán dinámicamente -->
+            <div class="section-header">
+                <h2 id="categoryTitle">Todos los productos</h2>
+                <div class="products-count" id="productsCount">10 productos</div>
+            </div>
+            
+            <div class="products-list" id="productsList">
+                <!-- Los productos se cargarán aquí dinámicamente -->
             </div>
         </section>
 
-        <!-- Columna derecha: Carrito de compras -->
-        <aside class="sidebar right-sidebar cart-sidebar">
+        <!-- Columna 3: Carrito de compras (solo en desktop) -->
+        <aside class="cart-sidebar" id="desktopCart">
             <div class="cart-header">
-                <h3><i class="fas fa-shopping-cart"></i> Carrito de Compras</h3>
-                <button class="close-cart-mobile"><i class="fas fa-times"></i></button>
+                <h3>Carrito de compras</h3>
+                <button class="close-cart" id="closeDesktopCart">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-            <div id="cart-items" class="cart-items">
-                <p class="empty-cart-message">El carrito está vacío</p>
+            
+            <div class="cart-items" id="cartItems">
+                <!-- Los productos del carrito se cargarán aquí -->
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Tu carrito está vacío</p>
+                </div>
             </div>
             
             <div class="cart-summary">
-                <div class="summary-row">
-                    
-                </div>
-                
-                <div class="price-tiers">
-                    <p><i class="fas fa-info-circle"></i> Precios por volumen:</p>
-                    <ul>
-                        <li><span class="tier">+$200:</span> Nuevo precio</li>
-                        <li><span class="tier">+$500:</span> Con descuento</li>
-                        <li><span class="tier">+$1000:</span> Mas descuento</li>
-                        <li><span class="tier">+$3000:</span>  Un Super descuento</li>
-                    </ul>
-                    <p class="note">* Los precios se ajustan automáticamente</p>
-                </div>
-                
                 <div class="summary-row total">
-                    <span>Total a pagar:</span>
-                    <span id="total">$0.00</span>
+                    <span>Total a pagar</span>
+                    <span id="total">0.00 USD</span>
                 </div>
                 
-                <button id="send-order-btn" class="btn-send-order">
-                    <i class="fab fa-whatsapp"></i> Enviar Pedido
+                <!-- Selector de precio según cantidad -->
+                <div class="price-tier">
+                    <h4>Precios por volumen:</h4>
+                    <div class="tier-info">
+                        <p>Menos de 200 USD: <span class="tier-price" id="tier1">Precio base</span></p>
+                        <p>Más de 200 USD: <span class="tier-price" id="tier2">Nuevo reducido</span></p>
+                        <p>Más de 500 USD: <span class="tier-price" id="tier3">Con descuento</span></p>
+                        <p>Más de 1000 USD: <span class="tier-price" id="tier4">Precio especial</span></p>
+                        <p>Más de 3000 USD: <span class="tier-price" id="tier5">Un Super precio</span></p>
+                    </div>
+                    <div class="current-tier">
+                        Actual: <strong id="currentTier">Precio base</strong>
+                    </div>
+                </div>
+                
+                <button class="checkout-btn" id="checkoutBtn">
+                    <i class="fab fa-whatsapp"></i> Enviar pedido al WhatsApp
                 </button>
             </div>
         </aside>
     </main>
 
-    <footer>
-        <p>MercoVentas &copy; 2026 - USTED TIENE TODOS LOS DERECHOS</p>
-    </footer>
-
-    <!-- Modal para detalles del producto -->
-    <div id="product-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div id="modal-product-details"></div>
+    <!-- Carrito móvil (modal) -->
+    <div class="mobile-cart-modal" id="mobileCartModal">
+        <div class="mobile-cart-container">
+            <div class="mobile-cart-header">
+                <h3>Carrito de compras</h3>
+                <button class="close-mobile-cart" id="closeMobileCart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-cart-items" id="mobileCartItems">
+                <!-- Los productos del carrito móvil se cargarán aquí -->
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Tu carrito está vacío</p>
+                </div>
+            </div>
+            
+            <div class="mobile-cart-summary">
+                <div class="summary-row total">
+                    <span>Total a pagar</span>
+                    <span id="mobileTotal">0.00 USD</span>
+                </div>
+                
+                <div class="price-tier mobile-tier">
+                    <h4>Precios por volumen:</h4>
+                    <div class="current-tier">
+                        Actual: <strong id="mobileCurrentTier">Precio base</strong>
+                    </div>
+                </div>
+                
+                <button class="checkout-btn" id="mobileCheckoutBtn">
+                    <i class="fab fa-whatsapp"></i> Enviar pedido al WhatsApp
+                </button>
+            </div>
         </div>
     </div>
 
-    <script src="js/tienda.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="img/logo.png" alt="Ferretería Online">
+                <p></p>
+            </div>
+            <div class="footer-info">
+               
+                <p><i class="fas fa-clock"></i> Lunes a Viernes: 8:30 AM - 5:30 PM </p>
+                <p><i class="fas fa-clock"></i> Sábado: 10:00 AM - 5:00 PM</p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 Ferretería Online. Siempre Contigo</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
